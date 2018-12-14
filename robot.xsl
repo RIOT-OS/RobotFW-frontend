@@ -56,7 +56,8 @@
     <thead class="thead-light">
       <tr>
         <th class="border-right">Board</th>
-        <xsl:for-each select="board[@name = 'samr21-xpro']/testsuite">
+        <!-- generate header from first board testsuites -->
+        <xsl:for-each select="board[1]/testsuite">
         <th><xsl:value-of select="@name" /></th>
         </xsl:for-each>
       </tr> 
