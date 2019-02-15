@@ -13,6 +13,8 @@
 
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+      <!-- RIOT HIL RobotFramework CSS -->
+      <link rel="stylesheet" href="https://ci.riot-os.org/static/robot.css" />
       <title>RIOT HIL</title>
     </head>
     <body>
@@ -60,7 +62,7 @@
         <xsl:for-each select="board[1]/testsuite">
         <th><xsl:value-of select="@name" /></th>
         </xsl:for-each>
-      </tr> 
+      </tr>
     </thead>
     <tbody>
       <xsl:for-each select="board">
@@ -91,8 +93,8 @@
                   </xsl:for-each>
                 </xsl:attribute>
               </xsl:if>
-              <div class="progress bg-danger position-relative">
-                <div class="progress-bar bg-success" role="progressbar" style="width: {$percent}%" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" /> 
+              <div class="progress bg-riot-red position-relative">
+                <div class="progress-bar bg-riot-green" role="progressbar" style="width: {$percent}%" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" />
                 <bold class="justify-content-center d-flex position-absolute w-100 text-light">(<xsl:value-of select="$pass" />/<xsl:value-of select="$total" />)</bold>
               </div>
             </a>
@@ -101,7 +103,7 @@
       </tr>
       </xsl:for-each>
     </tbody>
-  </table> 
+  </table>
 </xsl:template>
 
 </xsl:stylesheet>
