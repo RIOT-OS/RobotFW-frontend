@@ -73,28 +73,43 @@
         <xsl:for-each select="testsuite">
           <xsl:variable name="board" select="../@name"/>
           <xsl:variable name="suite" select="translate(@name,' ','_')"/>
-          <xsl:variable name="pass" select="@tests - @failures"/>
+          <xsl:variable name="pass" select="@tests - @failures - @skipped"/>
           <xsl:variable name="total" select="@tests"/>
           <xsl:variable name="fails" select="@failures"/>
-          <xsl:variable name="percent" select="$pass div $total * 100"/>
+          <xsl:variable name="skips" select="@skipped"/>
+          <xsl:variable name="pass_percent" select="$pass div $total * 100"/>
+          <xsl:variable name="fail_percent" select="$fails div $total * 100"/>
+          <xsl:variable name="skip_percent" select="$skips div $total * 100"/>
           <td>
             <a class="card-link" href="{$board}/{$suite}/report.html">
-              <!-- show list of failed tests in tooltip, if any -->
-              <xsl:if test="number($fails) &gt; 0">
+              <!-- show list of failed and skipped tests in tooltip, if any -->
+              <xsl:if test="number($fails) &gt; 0 or number($skips) &gt; 0">
                 <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
                 <xsl:attribute name="data-placement">bottom</xsl:attribute>
                 <xsl:attribute name="data-html">true</xsl:attribute>
                 <xsl:attribute name="title">
+                <xsl:if test="number($fails) &gt; 0">
                   <xsl:value-of select="concat('Failed Tests:', '&#013;')" />
                   <xsl:for-each select="testcase">
                     <xsl:if test="failure">
                       <xsl:value-of select="concat('- ', @name, '&#013;')" />
                     </xsl:if>
                   </xsl:for-each>
+                </xsl:if>
+                      <xsl:if test="number($skips) &gt; 0">
+                        <xsl:value-of select="concat('Skipped Tests:', '&#013;')" />
+                        <xsl:for-each select="testcase">
+                          <xsl:if test="skipped">
+                            <xsl:value-of select="concat('- ', @name, '&#013;')" />
+                          </xsl:if>
+                        </xsl:for-each>
+                      </xsl:if>
                 </xsl:attribute>
               </xsl:if>
-              <div class="progress bg-riot-red position-relative">
-                <div class="progress-bar bg-riot-green" role="progressbar" style="width: {$percent}%" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" />
+              <div class="progress position-relative">
+                <div class="progress-bar bg-riot-green" role="progressbar" style="width: {$pass_percent}%" aria-valuenow="{$pass_percent}" aria-valuemin="0" aria-valuemax="100" />
+                <div class="progress-bar bg-riot-red" role="progressbar" style="width: {$fail_percent}%" aria-valuenow="{$fail_percent}" aria-valuemin="0" aria-valuemax="100" />
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: {$skip_percent}%" aria-valuenow="{$skip_percent}" aria-valuemin="0" aria-valuemax="100" />
                 <bold class="justify-content-center d-flex position-absolute w-100 text-light">(<xsl:value-of select="$pass" />/<xsl:value-of select="$total" />)</bold>
               </div>
             </a>
