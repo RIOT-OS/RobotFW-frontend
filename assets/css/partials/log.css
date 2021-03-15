@@ -1,0 +1,107 @@
+/**
+ * Log
+ */
+
+.c-page-log {}
+
+.c-log {}
+
+.c-log-header {
+  @apply flex flex-wrap justify-between py-2 pr-2 cursor-pointer;
+}
+
+.c-log-header:hover {
+  @apply bg-gray-200;
+}
+
+.c-log-body {
+  @apply mb-0;
+}
+
+.c-log-container {
+  @apply pl-3 pt-3 pr-4 pb-4;
+}
+
+.c-log .c-log {
+  @apply border-solid border-t border-gray-400;
+}
+
+#c-log-wrapper > .c-log-suite {
+  @apply -mx-6;
+}
+
+#c-log-wrapper > .c-log > .c-log-header {
+  @apply pl-1;
+}
+
+#c-log-wrapper > .c-log > .c-log-body > .c-log > .c-log-body:last-child {
+  @apply border-b-4 border-gray-200;
+}
+
+#c-log-wrapper > .c-log > .c-log-body > .c-log > .c-log-body {
+  @apply border-r-4 border-gray-200;
+}
+  
+.c-log-suite .c-log-suite {
+  @apply border-l-4 border-gray-200;
+}
+
+.c-log-suite .c-log-test,
+.c-log-suite .c-log-kw {
+  @apply border-l-4 border-gray-200;
+}
+
+@screen sm {
+  .c-log-header {
+    @apply pr-0;
+  }
+
+  #c-log-wrapper > .c-log-suite {
+    @apply mx-auto;
+  }
+
+  #c-log-wrapper > .c-log > .c-log-header {
+    @apply pl-0;
+  }
+
+  #c-log-wrapper > .c-log > .c-log-body > .c-log > .c-log-body:last-child,
+  #c-log-wrapper > .c-log > .c-log-body > .c-log > .c-log-body,
+  .c-log-suite .c-log-test,
+  .c-log-suite .c-log-kw {
+    @apply border-0;
+  }
+
+  .c-log-suite .c-log-suite{
+    @apply border-l-0 border-r-0;
+  }
+
+  .c-log .c-log {
+    @apply ml-2;
+  }
+}
+
+@screen lg {
+  .c-log .c-log {
+    @apply ml-3;
+  }
+}
+
+.c-log-messages {
+  @apply bg-gray-200 overflow-x-auto;
+}
+
+.c-log-anchored {
+  @apply bg-blue-100 border-4 border-blue-200 !important;
+}
+
+.c-log-anchored .c-log-header:hover {
+  @apply bg-blue-200;
+}
+
+.c-log-nav {
+  @apply invisible;
+}
+
+.c-log-header:hover .c-log-nav {
+  @apply visible;
+}

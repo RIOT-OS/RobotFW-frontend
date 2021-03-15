@@ -1,0 +1,114 @@
+.c-table-hover tr:hover {
+  @apply bg-gray-100;
+}
+
+/*
+ * Vertical table
+ */
+.c-table-vertical th,
+.c-table-vertical td {
+  @apply p-2 border-b;
+}
+
+@screen sm {
+  .c-table-vertical th,
+  .c-table-vertical td {
+    @apply p-3;
+  }
+}
+
+/*
+ * Responsive table
+ */
+.c-table-responsive {
+  @apply w-full flex flex-row flex-no-wrap overflow-hidden border-collapse mb-4;
+}
+
+.c-table-responsive thead tr th {
+  @apply text-left;
+}
+
+.c-table-responsive-row {
+  @apply flex flex-col flex-no-wrap mb-6;
+}
+
+.c-table-responsive tr th,
+.c-table-responsive tr td {
+  @apply border-b p-2;
+}
+
+.c-table-responsive tr th:last-child,
+.c-table-responsive tr td:last-child {
+  @apply border-b-0;
+}
+
+.c-table-responsive thead .c-table-responsive-row {
+  @apply border-2;
+}
+
+.c-table-responsive tbody .c-table-responsive-row {
+  @apply border-2 border-l-0;
+}
+
+.c-table-responsive .c-table-responsive-row tr td:hover {
+  @apply bg-gray-100;
+}
+
+@screen sm {
+  table {
+    display: inline-table !important; /* somehow tailwind does not have a .inline-table class */
+  }
+
+  .c-table-responsive th,
+  .c-table-responsive td {
+    @apply p-3;
+  }
+
+  .c-table-responsive tr th:last-child,
+  .c-table-responsive tr td:last-child {
+    @apply border-b;
+  }
+
+  .c-table-responsive .c-table-responsive-row {
+    @apply table-row mb-0;
+  }
+
+  .c-table-responsive .c-table-responsive-row:hover {
+    @apply bg-gray-100;
+  }
+
+  .c-table-responsive .c-table-responsive-row td:hover {
+    @apply bg-transparent;
+  }
+
+  .c-table-responsive .c-table-responsive tr:first-child th:last-child,
+  .c-table-responsive .c-table-responsive tr td:last-child {
+    @apply border-b;
+  }
+
+  .c-table-responsive thead .c-table-responsive-row {
+    @apply border-0;
+  }
+
+  .c-table-responsive thead tr:not(:first-child) {
+    display: none;
+  }
+
+  .c-table-responsive tbody .c-table-responsive-row {
+    @apply border-0;
+  }
+
+  .c-table-responsive tbody .c-table-responsive-row:first-child,
+  .c-table-responsive tbody .c-table-responsive-row:last-child {
+    @apply border-t-2;
+  }
+
+  .c-table-responsive tbody .c-table-responsive-row:last-child td:not(:last-child) {
+    @apply font-bold;
+  }
+
+  .c-table-responsive tbody .c-table-responsive-row:last-child td,
+  .c-table-responsive tbody .c-table-responsive-row:last-child td:last-child {
+    @apply border-b-0;
+  }
+}

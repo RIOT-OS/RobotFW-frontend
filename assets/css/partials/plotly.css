@@ -1,0 +1,13 @@
+.c-plotly-container {
+  padding: 0.75rem;
+  margin-bottom: 15px;
+}
+
+.c-plotly-container > div {
+  height: 500px;
+  width: auto;
+}
+
+.c-plotly-container .main-svg {
+  height: 100%;
+}

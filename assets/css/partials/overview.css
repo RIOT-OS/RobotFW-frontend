@@ -1,0 +1,138 @@
+/*
+ * Grid
+ */
+table thead th,
+table > tbody > tr > th.sticky {
+    width: 10em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table > thead > tr > th {
+    @apply bg-gray-200 p-4 text-gray-800 border-b;
+}
+
+table > tbody > tr > th.sticky {
+    @apply left-0 z-10 bg-clip-padding bg-white whitespace-no-wrap p-3 text-gray-800 text-left border-b border-r-2 shadow;
+}
+
+table > tbody > tr > td {
+    @apply border-b;
+}
+
+
+.c-cell.selected > div {
+    @apply border-2 border-dashed border-blue-500;
+}
+
+.c-cell {
+    @apply block px-1;
+}
+
+.c-cell-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    @apply text-gray-600;
+}
+
+.c-cell-overlay:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.c-cell-overlay-nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.c-cell-overlay-nav-view,
+.c-cell-overlay-nav-sidebar {
+    @apply mx-2;
+}
+
+.c-cell-overlay-nav-mobile a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* Do not show the overlay on touch devices */
+@media (hover: none) {
+    .c-cell-overlay-nav {
+        display: none;
+    }
+    .c-cell-overlay-nav-mobile {
+        display: block;
+    }
+}
+
+
+/*
+ * Sidebar
+ */
+#content-sidebar {
+    @apply bg-gray-100;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    z-index: 99;
+}
+
+@screen md {
+    #content-sidebar {
+        width: 400px;
+    }
+}
+
+.c-content-sidebar-header {
+    @apply bg-gray-300;
+}
+
+/* .c-content-sidebar-header .c-content-sidebar-close {} */
+
+.c-content-sidebar-header #content-sidebar-title {
+    line-height: normal;
+    @apply py-4 font-bold border-b;
+}
+
+.c-content-sidebar-body {
+    overflow-y: auto;
+    height: calc(100% - 8em);
+}
+
+/* .c-content-sidebar-body .c-content-sidebar-body-inner {} */
+
+.c-sidebar-panel {
+    @apply pb-3;
+}
+
+.c-sidebar-panel .c-sidebar-panel-buttons > .c-inline-buttons {
+    margin: 0 auto;
+    width: 14em;
+}
+
+.c-sidebar-panel .c-sidebar-panel-buttons .c-button {
+    @apply px-2 py-1;
+}
+
+/* .c-sidebar-panel .c-sidebar-panel-status {} */
+/* .c-sidebar-panel .c-sidebar-panel-details {} */
+
+.c-sidebar-panel .c-sidebar-panel-buttons,
+.c-sidebar-panel .c-sidebar-panel-status,
+.c-sidebar-panel .c-sidebar-panel-details {
+    @apply px-4 py-2 border-b;
+}

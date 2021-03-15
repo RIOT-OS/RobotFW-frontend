@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    ports:
+      - "8080:80"
+    volumes:
+      - "./fixtures:/srv/RobotFW-frontend/content:ro"
+      - "./static:/srv/RobotFW-frontend/static:ro"
+    environment:
+      - APP_DOMAIN=localhost

@@ -1,0 +1,20 @@
+.c-label {
+  @apply text-xs inline-flex items-center font-bold uppercase text-white rounded-full mr-2;
+}
+
+.c-label-default { @apply bg-gray-600 }
+.c-label-pass { @apply bg-green-600 }
+.c-label-info { @apply bg-blue-600 }
+.c-label-fail { @apply bg-red-600 }
+
+.c-label-sm { @apply px-2 py-1 leading-3 }
+.c-label-md { @apply px-3 py-1 }
+.c-label-lg { @apply px-4 py-2 }
+
+.c-label-closing {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 3s, opacity 3s cubic-bezier(0,0,.58,1);
+}
+
+/* .c-label-close {} */

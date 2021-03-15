@@ -1,0 +1,27 @@
+/*
+  postcss-import is smart enough to look for files
+  in the node_modules folder automatically.
+*/
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "vendor/circle.css";
+
+@import "base/fonts.css";
+@import "base/hotfixes.css";
+@import "base/structure.css";
+@import "base/typography.css";
+@import "base/util.css";
+
+@import "components/label.css";
+@import "components/button.css";
+@import "components/progress-circle.css";
+@import "components/commit-id-nav.css";
+
+@import "partials/bootstrap-native.css";
+@import "partials/plotly.css";
+@import "partials/tables.css";
+@import "partials/navbar.css";
+@import "partials/log.css";
+@import "partials/overview.css";

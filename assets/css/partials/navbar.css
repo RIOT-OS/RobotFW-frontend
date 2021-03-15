@@ -1,0 +1,61 @@
+/*
+ * Navbar menu
+ */
+#navbar-menu .c-button {
+  @apply justify-center;
+}
+
+@screen md {
+  #navbar-menu > .justify-end > div:not(:first-child) .c-button {
+    @apply ml-2;
+  }
+}
+
+@screen sm {
+  #navbar-menu .c-button {
+    @apply justify-start;
+  }
+}
+
+@screen md {
+  #header .c-container > .flex > div:first-child {
+    @apply pl-2;
+  }
+  
+  #header .c-container > .flex > div:last-child {
+    @apply pr-2;
+  }
+
+  .collapse.c-collapse-till-sm {
+    display: block !important;
+    height: auto !important;
+    visibility: visible;
+  }
+}
+
+#navbar-menu {
+  @apply bg-white z-50;
+  height: 100vh;
+}
+
+@screen md {
+  #navbar-menu {
+    height: auto;
+  }
+}
+
+.c-dropdown {
+  @apply mt-2 origin-top-right pt-2 pb-4 bg-white rounded-md shadow-lg whitespace-no-wrap;
+}
+
+.c-dropdown .c-dropdown-item {
+  @apply flex justify-between items-center px-6 py-1;
+}
+
+.c-dropdown .c-dropdown-item:hover {
+  @apply text-gray-900 bg-gray-200;
+}
+
+.c-dropdown .c-dropdown-item:focus {
+  @apply text-gray-900 bg-gray-200 outline-none shadow-outline;
+}

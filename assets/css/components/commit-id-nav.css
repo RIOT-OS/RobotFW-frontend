@@ -1,0 +1,13 @@
+.c-commit-id-nav .c-commit-id-nav-buttons {
+  @apply inline-flex;
+}
+
+tr:hover > td > .c-commit-id-nav .c-commit-id-nav-buttons {
+  @apply inline-flex;
+}
+
+@screen xl {
+  .c-commit-id-nav .c-commit-id-nav-buttons {
+    @apply hidden;
+  }
+}

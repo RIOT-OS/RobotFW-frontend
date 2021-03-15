@@ -1,0 +1,18 @@
+body {
+  @apply text-gray-900 leading-normal;
+}
+
+h1 {
+  @apply text-3xl;
+  @apply mb-4;
+}
+
+h2 {
+  @apply text-2xl;
+  @apply mb-4;
+}
+
+h3 {
+  @apply text-xl;
+  @apply mb-3;
+}

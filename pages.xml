@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Page specific configuration
+-->
+
+<pages>
+  <page name="overview">
+    <template>page-overview</template>
+  </page>
+  <page name="report">
+    <template>page-report</template>
+    <board name="arduino-due">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="esp32-wroom-32">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="frdm-kw41z">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="nucleo-f091rc">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="nucleo-f103rb">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="nucleo-f767zi">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="saml10-xpro">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+    <board name="samr21-xpro">
+      <testsuite name="tests_xtimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+      <testsuite name="tests_ztimer_benchmarks">
+        <plots>
+          <plot name="accuracy" />
+          <plot name="jitter" />
+          <plot name="overhead" />
+        </plots>
+      </testsuite>
+    </board>
+  </page>
+  <page name="log">
+    <template>page-log</template>
+  </page>
+</pages>

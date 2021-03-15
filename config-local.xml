@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Basic config
+
+  Append a trailing slash to filesystem paths.
+
+  @see pages.xml for page specific configuration
+-->
+
+<config>
+  <lang>en</lang>
+  <charset>utf-8</charset>
+  <title>RIOT HIL (local)</title>
+  <page_title>HIL Test Results</page_title>
+  <absolute_urls>true</absolute_urls>
+  <urls>
+    <base>http://localhost:8080/results</base>
+    <static>http://localhost:8080/static</static>
+    <riot_commit_url>https://github.com/RIOT-OS/RIOT/tree/</riot_commit_url>
+    <robot_fw_commit_url>https://github.com/RIOT-OS/RobotFW-tests/tree/</robot_fw_commit_url>
+  </urls>
+  <paths>
+    <icons>assets/zondicons/</icons>
+  </paths>
+  <scripts>
+    <script type="text/javascript" external="true" position="top">https://cdn.plot.ly/plotly-1.58.4.min.js</script>
+    <script type="text/javascript" external="true" position="bottom">https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/3.0.14/bootstrap-native.min.js</script>
+    <script type="text/javascript" external="false" position="bottom">scripts.js?v=1.0.2</script>
+  </scripts>
+  <date_formats>
+    <short>dd.MM.yyyy</short>
+    <time>HH:mm</time>
+    <duration>HH:mm:ss.SSS</duration> <!-- If milliseconds are inlcuded ('S') no other chars are allowed afterwards -->
+  </date_formats>
+</config>

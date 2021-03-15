@@ -1,0 +1,8 @@
+node_modules
+fixtures/*
+!fixtures/.gitkeep
+static/*
+!static/.gitkeep
+single.html
+config.xml
+docker-compose.override.yml

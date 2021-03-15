@@ -1,0 +1,29 @@
+/* #header {} */
+
+/* #main {} */
+
+/* #main #content-wrapper {} */
+
+/* #main #content-wrapper #content {} */
+
+.c-container {
+  @apply w-full max-w-screen-xl mx-auto;
+}
+
+.c-content-inner {
+  @apply mt-2 mb-6 px-6 w-full mx-auto;
+}
+
+@screen xl {
+  .c-content-inner {
+    @apply px-12;
+  }
+}
+
+.c-content-inner > h1 {
+  @apply mb-1;
+}
+
+.c-content-inner > h1 + hr {
+  @apply mt-0;
+}
