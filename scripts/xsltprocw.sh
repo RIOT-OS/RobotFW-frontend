@@ -66,6 +66,10 @@ shift $((OPTIND - 1))
 destination_path="${1%/}"  # Remove trailing slash if it exists
 param_validation_failed=false
 
+# Relative paths are resolved from the location of $xsl_stylesheet
+# so lets get there before the parameters are checked.
+cd "${xsl_stylesheet%/*}"
+
 validate_file_param "$xsl_stylesheet" "-s" 
 if [ "$?" = 1 ]; then param_validation_failed=true; fi
 
@@ -84,6 +88,8 @@ if [ "${param_validation_failed}" = true ]; then
     echo "Exiting"
     exit 1
 fi
+
+cd "${base_dir}"
 
 # Transform all pages if -p is not set
 if [ -z "${pages[*]}" ]; then pages=(overview report log); fi
