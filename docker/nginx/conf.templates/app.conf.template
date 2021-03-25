@@ -11,6 +11,21 @@ server {
         deny  all;
     }
 
+    # Rewrite /results to /results/nightly/latest/overview
+    location ~ ^/results(?:/)?$ {
+        rewrite ^/results(?:/)?$ /results/nightly/latest/overview permanent;
+    }
+
+    # Rewrite /results/[branch] to /results/[branch]/latest/overview
+    location ~ ^/results/[^/]+(?:/)?$ {
+        rewrite ^/results/(.+?)(?:/)?$ /results/$1/latest/overview permanent; 
+    }
+
+    # Rewrite /results/[branch]/[build_nr] to /results/[branch]/[build_nr]/overview
+    location ~ ^/results/[^/]+/[^/]+(?:/)?$ {                                           
+        rewrite ^/results/(.+?)/(.+?)(?:/)?$ /results/$1/$2/overview permanent;
+    }
+
     location ~ ^/results/ {
         limit_except GET HEAD { deny all; }
         rewrite  ^/results/(.+?)/(.+?)/(.+?)(\.html)?$ /content/$1/builds/$2/archive/build/robot/$3.html break;
