@@ -62,13 +62,12 @@
   -->
   <xsl:template match="boards" mode="overview-grid">
     <xsl:variable name="all-testsuites" select="riot-robot:get-all-testsuites($robot-doc/result/boards)" />
-
-    <table class="h-full table-auto border-collapse w-full text-center">
-      <thead class="sticky top-0 z-20">
+    <table class="table-auto border-collapse w-full text-center">
+      <thead>
         <tr class="mb-4">
-          <th class="sticky left-0 text-left">Board</th>
+          <th class="text-left sticky left-0 top-0 z-30">Board</th>
           <xsl:for-each select="exsl:node-set($all-testsuites)/testsuites/*">
-            <th>
+            <th class="text-left sticky top-0 z-20">
               <xsl:value-of select="substring(current(), 7)" /> <!-- remove 'tests_' prefix -->
             </th>
           </xsl:for-each>
