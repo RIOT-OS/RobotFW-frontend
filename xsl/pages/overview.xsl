@@ -67,7 +67,7 @@
         <tr class="mb-4">
           <th class="text-left sticky left-0 top-0 z-30">Board</th>
           <xsl:for-each select="exsl:node-set($all-testsuites)/testsuites/*">
-            <th class="text-left sticky top-0 z-20">
+            <th class="sticky top-0 z-20">
               <xsl:value-of select="substring(current(), 7)" /> <!-- remove 'tests_' prefix -->
             </th>
           </xsl:for-each>
