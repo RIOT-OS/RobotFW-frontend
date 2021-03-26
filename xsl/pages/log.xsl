@@ -3,6 +3,7 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+  <xsl:import href="../components/page-overlay.xsl" />
   <xsl:import href="../partials/summary.xsl" />
   <xsl:import href="../partials/log.xsl" />
 
@@ -10,6 +11,12 @@
   <xsl:param name="context-node" />
 
     <xsl:for-each select="$context-node">
+
+      <!-- call components/spinner -->
+      <xsl:call-template name="page-overlay">
+        <xsl:with-param name="spinner" select="'dots'" />
+        <xsl:with-param name="remove-when-loaded" select="'true'" />
+      </xsl:call-template>
 
       <div id="content" class="c-page-log flex lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div class="pt-4 mb-16 w-full">
