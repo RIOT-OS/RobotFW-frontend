@@ -7,6 +7,16 @@ server {
 
     absolute_redirect off;
 
+    gzip on;
+    gzip_disable "msie6";
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 32 16k;
+    gzip_http_version 1.1;
+    gzip_min_length 250;
+    gzip_types text/plain text/xml text/html text/javascript text/css application/json application/javascript application/x-javascript application/xml application/xml+rss image/jpeg image/bmp image/svg+xml image/x-icon;
+
     location / {
         deny  all;
     }
@@ -32,15 +42,6 @@ server {
     }
 
     location ~ ^/static {
-        gzip on;
-        gzip_disable "msie6";
-        gzip_vary on;
-        gzip_proxied any;
-        gzip_comp_level 6;
-        gzip_buffers 32 16k;
-        gzip_http_version 1.1;
-        gzip_min_length 250;
-        gzip_types image/jpeg image/bmp image/svg+xml text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript image/x-icon;
     }
 
     # redirect server error pages
