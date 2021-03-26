@@ -35,6 +35,7 @@
   <xsl:variable name="page-title" select="$config-doc/config/page_title" />
   <xsl:variable name="icon-dir" select="concat($project-basedir, '/', $config-doc/config/paths/icons)" />
   <xsl:variable name="date-formats" select="$config-doc/config/date_formats" />
+  <xsl:variable name="stylesheets" select="$config-doc/config/stylesheets" />
   <xsl:variable name="scripts" select="$config-doc/config/scripts" />
   <xsl:variable name="pages" select="$config-pages-doc/pages" />
 
@@ -59,7 +60,9 @@
     <html lang="{$lang}" class="bg-white antialiased">
       <head>
         <!-- call partials/head -->
-        <xsl:call-template name="partial-head" />
+        <xsl:call-template name="partial-head">
+          <xsl:with-param name="page" select="$page" />
+        </xsl:call-template>
       </head>
       <body class="h-screen overflow-hidden">
         <div id="header" class="relative h-16 z-50">

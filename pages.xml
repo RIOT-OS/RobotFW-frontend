@@ -10,6 +10,9 @@
   </page>
   <page name="report">
     <template>page-report</template>
+    <scripts>
+      <script type="text/javascript" external="true" position="top">https://cdn.plot.ly/plotly-1.58.4.min.js</script>
+    </scripts>
     <board name="arduino-due">
       <testsuite name="tests_xtimer_benchmarks">
         <plots>

@@ -23,8 +23,10 @@
   <paths>
     <icons>assets/zondicons/</icons>
   </paths>
+  <stylesheets>
+    <stylesheet>styles.css?v=1.0.2</stylesheet>
+  </stylesheets>
   <scripts>
-    <script type="text/javascript" external="true" position="top">https://cdn.plot.ly/plotly-1.58.4.min.js</script>
     <script type="text/javascript" external="true" position="bottom">https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/3.0.14/bootstrap-native.min.js</script>
     <script type="text/javascript" external="false" position="bottom">scripts.js?v=1.0.2</script>
   </scripts>
