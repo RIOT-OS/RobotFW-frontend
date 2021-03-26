@@ -21,6 +21,8 @@
   <xsl:template name="log-element" match="suite|test|kw" mode="log">
     <xsl:param name="parent-id" select="''" />
     <xsl:param name="collapsed" select="'false'" />
+    <xsl:param name="current-board" select="''" />
+    <xsl:param name="current-testsuite" select="''" />
 
     <xsl:variable name="starttime" select="riot-robot:parse-robot-datetime(./status/@starttime)" />
     <xsl:variable name="endtime" select="riot-robot:parse-robot-datetime(./status/@endtime)" />
@@ -38,7 +40,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
- 
+
     <div id="{$css-id}" class="c-log c-log-{name()}">
       <!-- Collapsible Header -->
       <div type="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="collapse" data-target="#div-{$css-id}">
@@ -60,10 +62,10 @@
             <span class="mr-1 sm:mr-2">
               <!-- toggle icon -->
               <span class="c-log-close block ml-2">
-                <xsl:copy-of select="riot-icons:get-icon($icon-dir, 'minus-outline.svg', 'c-fill-gray w-4 h-4 mr-1', 'true')" />
+                <xsl:copy-of select="riot-icons:get-icon($icon-url, 'minus-outline.svg', 'c-fill-gray w-4 h-4 mr-1', 'false')" />
               </span>
               <span class="c-log-open block ml-2">
-                <xsl:copy-of select="riot-icons:get-icon($icon-dir, 'add-outline.svg', 'c-fill-gray w-4 h-4 mr-1', 'true')" />
+                <xsl:copy-of select="riot-icons:get-icon($icon-url, 'add-outline.svg', 'c-fill-gray w-4 h-4 mr-1', 'false')" />
               </span>
             </span>
             <!-- include status label -->
@@ -81,6 +83,8 @@
           <xsl:call-template name="log-nav">
             <xsl:with-param name="css-id" select="$css-id" />
             <xsl:with-param name="duration" select="$duration" />
+            <xsl:with-param name="current-board" select="$current-board" />
+            <xsl:with-param name="current-testsuite" select="$current-testsuite" />
           </xsl:call-template>
         </div>
         <div class="w-full inline-flex items-center">
@@ -129,6 +133,8 @@
         <xsl:apply-templates mode="log" select="./suite|./test|./kw">
           <xsl:with-param name="parent-id" select="$css-id" />
           <xsl:with-param name="collapsed" select="'true'" />
+          <xsl:with-param name="current-board" select="$current-board" />
+          <xsl:with-param name="current-testsuite" select="$current-testsuite" />
         </xsl:apply-templates>
       </div>
     </div>
@@ -219,18 +225,22 @@
   <xsl:template name="log-nav">
     <xsl:param name="css-id" />
     <xsl:param name="duration" select="'99:99:99.999'" />
+    <xsl:param name="current-board" />
+    <xsl:param name="current-testsuite" />
+
+    <xsl:variable name="anchor-href" select="riot-robot:get-testsuite-page-url($current-board, $current-testsuite, concat('log', '#', $css-id))" />
 
     <div class="flex flex-row items-center">
       <div class="c-log-nav flex">
         <span class="c-log-toggle-children c-log-open-children block ml-2">
-          <xsl:copy-of select="riot-icons:get-icon($icon-dir, 'cheveron-outline-down.svg', 'c-fill-gray w-4 h-4 mr-1', 'true')" />
+          <xsl:copy-of select="riot-icons:get-icon($icon-url, 'cheveron-outline-down.svg', 'c-fill-gray w-4 h-4 mr-1', 'false')" />
         </span>
         <span class="c-log-toggle-children c-log-close-children block ml-2">
-          <xsl:copy-of select="riot-icons:get-icon($icon-dir, 'cheveron-outline-up.svg', 'c-fill-gray w-4 h-4 mr-1', 'true')" />
+          <xsl:copy-of select="riot-icons:get-icon($icon-url, 'cheveron-outline-up.svg', 'c-fill-gray w-4 h-4 mr-1', 'false')" />
         </span>
-        <a class="inline-flex items-center" href="#{$css-id}">
+        <a class="inline-flex items-center" href="{$anchor-href}">
           <span class="block mr-4 ml-2">
-            <xsl:copy-of select="riot-icons:get-icon($icon-dir, 'link.svg', 'c-fill-gray w-4 h-4 mr-1', 'true')" />
+            <xsl:copy-of select="riot-icons:get-icon($icon-url, 'link.svg', 'c-fill-gray w-4 h-4 mr-1', 'false')" />
           </span>
           <span class="sr-only">Link-to</span>
         </a>

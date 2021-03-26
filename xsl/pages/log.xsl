@@ -8,11 +8,13 @@
   <xsl:import href="../partials/log.xsl" />
 
   <xsl:template name="page-overview" match="page/template[text() = 'page-log']" mode="call-page">
-  <xsl:param name="context-node" />
+    <xsl:param name="context-node" />
+    <xsl:param name="current-board" />
+    <xsl:param name="current-testsuite" />
 
     <xsl:for-each select="$context-node">
 
-      <!-- call components/spinner -->
+      <!-- call components/page-overlay -->
       <xsl:call-template name="page-overlay">
         <xsl:with-param name="spinner" select="'dots'" />
         <xsl:with-param name="remove-when-loaded" select="'true'" />
@@ -33,7 +35,10 @@
             <div id="c-log-wrapper" class="c-content-inner">
               <h1>Log</h1>
               <hr class="my-4 border-b-2 border-gray-200" />
-              <xsl:apply-templates mode="log" select="/robot/suite" />
+              <xsl:apply-templates mode="log" select="/robot/suite">
+                <xsl:with-param name="current-board" select="$current-board" />
+                <xsl:with-param name="current-testsuite" select="$current-testsuite" />
+              </xsl:apply-templates>
             </div>
           </div>
         </div>
