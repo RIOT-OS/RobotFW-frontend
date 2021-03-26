@@ -81,13 +81,19 @@
       <td><xsl:value-of select="$fail" /></td>
       <td><xsl:value-of select="$skips" /></td>
       <td>
-        <!-- call components/progress-bar -->
-        <xsl:call-template name="progress-bar">
-          <xsl:with-param name="total" select="$total" />
-          <xsl:with-param name="pass" select="$pass" />
-          <xsl:with-param name="fails" select="$fail" />
-          <xsl:with-param name="skips" select="$skips" />
-        </xsl:call-template>
+        <a>
+          <xsl:attribute name="href">
+            <xsl:value-of select="riot-robot:get-testsuite-page-url($current-board, $current-testsuite, concat('log#', @id))" />
+          </xsl:attribute>
+
+          <!-- call components/progress-bar -->
+          <xsl:call-template name="progress-bar">
+            <xsl:with-param name="total" select="$total" />
+            <xsl:with-param name="pass" select="$pass" />
+            <xsl:with-param name="fails" select="$fail" />
+            <xsl:with-param name="skips" select="$skips" />
+          </xsl:call-template>
+        </a>
       </td>
     </tr>
   </xsl:template>

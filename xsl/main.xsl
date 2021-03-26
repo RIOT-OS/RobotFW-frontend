@@ -45,7 +45,7 @@
   <xsl:variable name="icon-url" select="concat($static-url, '/images/zondicons')" />
 
   <!-- Configure output -->
-  <xsl:output method="html" />
+  <xsl:output method="html" indent="no" />
 
   <xsl:template match="/">
 
@@ -64,8 +64,8 @@
           <xsl:with-param name="page" select="$page" />
         </xsl:call-template>
       </head>
-      <body class="h-screen overflow-hidden">
-        <div id="header" class="relative h-16 z-50">
+      <body class="overflow-hidden">
+        <div id="header" class="fixed top-0 w-full h-16 z-50">
           <!-- call partials/navbar -->
           <xsl:call-template name="partial-navbar">
             <xsl:with-param name="page" select="$page" />
@@ -74,7 +74,7 @@
             <xsl:with-param name="current-testsuite" select="$current-testsuite" />
           </xsl:call-template>
         </div>
-        <div id="main" class="w-full">
+        <div id="main" class="w-full mt-16">
           <div id="content-wrapper" class="h-full w-full mx-auto overflow-y-auto">
             <!--
               Load a page template, see 'xsl/pages/'
@@ -89,6 +89,8 @@
               <xsl:when test="$pages/page[@name = $page]/@name = $page">                  
                 <xsl:apply-templates select="$pages/page[@name = $page]/template" mode="call-page">
                   <xsl:with-param name="context-node" select="current()"/>
+                  <xsl:with-param name="current-board" select="$current-board" />
+                  <xsl:with-param name="current-testsuite" select="$current-testsuite" />
                 </xsl:apply-templates>
               </xsl:when>
               <xsl:otherwise>
