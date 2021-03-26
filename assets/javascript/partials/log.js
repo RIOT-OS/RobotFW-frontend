@@ -1,21 +1,11 @@
-document.addEventListener("DOMContentLoaded", function() {
-  if (isPageLog()) {
+if (isPageLog()) {
+  window.addEventListener('hashchange', function() {
+    openParentLogElements(window.location.hash)
+  }, false);
 
-    // Open collapsed elements if anchor link used
+  document.addEventListener("DOMContentLoaded", function() {
     if (window.location.hash) {
-      var anchor = window.location.hash;
-      var idArray = anchor.replace('#','').split("-");
-      var firstElement = null;
-      while (idArray.length) {
-        var container = document.getElementById(idArray.join('-'));
-        var trigger = container.querySelector('.c-log-header');
-        var collapse = new BSN.Collapse(trigger)
-        collapse.show();
-        if ( firstElement == null ) firstElement = container;
-        idArray.pop();
-      }
-      firstElement.classList.add("c-log-anchored");
-      location.hash = anchor;
+      openParentLogElements(window.location.hash)
     }
 
     // Don't trigger collapse if an element has the .no-trigger-collapse class
@@ -26,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }, false);
     });
 
-    // Open / Collapse all children
+    // Toggle all children
     var collapsibleTriggers = document.querySelectorAll('#c-log-wrapper .c-log-toggle-children');
     collapsibleTriggers.forEach(function(trigger) {
       trigger.addEventListener('click', function(event) {
@@ -38,8 +28,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
     });
+  }, false);
+}
+
+function openParentLogElements(id, highlight=true) {
+  var idArray = id.replace('#','').split("-");
+  var topParent = null;
+
+  while (idArray.length) {
+    var container = document.getElementById(idArray.join('-'));
+    var trigger = container.querySelector('.c-log-header');
+    var collapse = new BSN.Collapse(trigger)
+    collapse.show();
+    if ( topParent == null ) topParent = container;
+    idArray.pop();
   }
-});
+  var highlighted = document.querySelectorAll('#c-log-wrapper .c-log-anchored');
+  highlighted.forEach(function(element) {
+    element.classList.remove("c-log-anchored");
+  });
+  if ( highlight ) topParent.classList.add("c-log-anchored");
+}
 
 function expandChildrenRecursively(element) {
   element.querySelector('.c-log-header').classList.remove('collapsed');
