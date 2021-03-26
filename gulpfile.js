@@ -3,6 +3,7 @@ const filter = require('gulp-filter');
 const postcss = require('gulp-postcss');
 const terser = require('gulp-terser');
 const concat = require('gulp-concat');
+const cssnano = require('cssnano');
 const del = require('del');
 
 const paths = {
@@ -70,6 +71,9 @@ function css() {
     ]))
     .pipe(concat('styles.css'))
     .pipe(gulp.dest(paths.css.dest))
+    .pipe(postcss([cssnano()]))
+    .pipe(concat('styles.min.css'))
+    .pipe(gulp.dest(paths.css.dest))
 }
 
 function js() {
@@ -77,10 +81,12 @@ function js() {
    
   return gulp.src(paths.js.src)
     .pipe(concat('scripts.js'))
-    // .pipe(terser(terserOptions))
     .on('error', function (error) {
       this.emit('end')
     })
+    .pipe(gulp.dest(paths.js.dest))
+    .pipe(concat('scripts.min.js'))
+    .pipe(terser(terserOptions))
     .pipe(gulp.dest(paths.js.dest))
 }
 
