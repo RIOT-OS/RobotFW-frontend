@@ -21,7 +21,7 @@ usage() {
     echo "  -f   (Optional) Force rebuild"
     echo "  -d   (Optional) Do a dry run"
     echo "  -v   (Optional) Verbose output"
-    echo "  -h   Show this help."
+    echo "  -h   Show this help"
     echo ""
 }
 
@@ -142,7 +142,7 @@ while [[ ${last_n_builds}>0 ]]; do
         frontend_version="$(head -n 1 "${version_file}")"
 
         if [ "${current_commit_id}" != "${frontend_version}" ] || [ "${force_rebuild}" = true ]; then
-            if [ -z "${pages[*]}" ]; then echo "------- DRY RUN -------"; fi
+            if [ "${dry_run}" = true ]; then echo "------- DRY RUN -------"; fi
             echo "Process ${artifacts_path}"
 
             if [[ "${pages[*]}" =~ "overview" ]]; then
@@ -173,7 +173,7 @@ while [[ ${last_n_builds}>0 ]]; do
                 start=`date +%s`
                 latest_path="${content_path}/${branch}/builds/latest/archive/build"
 
-                if [ ${dry_run} = false ]; then
+                if [ "${dry_run}" = false ]; then
                     if [ -d "${latest_path}" ]; then
                         rm -rf "${latest_path}"
                     fi
