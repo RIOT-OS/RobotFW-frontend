@@ -38,12 +38,12 @@
 
             This does not work with the original plotly snippets as it contains malformed <br> instead of <br />
           -->
-          <xsl:if test="$pages/page[@name = 'report']/board[@name = $current-board]/testsuite[@name = $current-testsuite]">
+          <xsl:if test="$pages/page[@name = 'report']/testsuites/testsuite[@name = $current-testsuite]">
             <div class="flex">
               <div class="c-content-inner">
                 <h1>Plots</h1>
                 <hr class="my-4 border-b-2 border-gray-200" />
-                <xsl:for-each select="$pages/page[@name = 'report']/board[@name = $current-board]/testsuite[@name = $current-testsuite]/plots/plot">
+                <xsl:for-each select="$pages/page[@name = 'report']/testsuites/testsuite[@name = $current-testsuite]/plots/plot">
                   <div class="c-plotly-container">
                     <xsl:copy-of select="document(concat($xml-basedir, '/', $current-board, '/', $current-testsuite, '/includes/', @name,'.html'))" />
                   </div>
