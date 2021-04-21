@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Basic local config, used for development
+  Basic test config, used for local testing
 
   Append a trailing slash to filesystem paths.
 
@@ -11,7 +11,7 @@
 <config>
   <lang>en</lang>
   <charset>utf-8</charset>
-  <title>RIOT HIL (local)</title>
+  <title>RIOT HIL (test)</title>
   <page_title>HIL Test Results</page_title>
   <absolute_urls>true</absolute_urls>
   <urls>
@@ -24,11 +24,11 @@
     <icons>assets/zondicons/</icons>
   </paths>
   <stylesheets>
-    <stylesheet>styles.css?v=1.0.2</stylesheet>
+    <stylesheet>styles.min.css?v=1.0.2</stylesheet>
   </stylesheets>
   <scripts>
     <script type="text/javascript" external="true" position="bottom">https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/3.0.14/bootstrap-native.min.js</script>
-    <script type="text/javascript" external="false" position="bottom">scripts.js?v=1.0.2</script>
+    <script type="text/javascript" external="false" position="bottom">scripts.min.js?v=1.0.2</script>
   </scripts>
   <date_formats>
     <short>dd.MM.yyyy</short>
