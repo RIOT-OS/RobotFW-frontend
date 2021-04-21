@@ -3,6 +3,17 @@ name: CD
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+    - 'assets/**'
+    - 'xsl/**'
+    - '**.md'
+    - 'LICENSE'
+    - '.gitignore'
+    - 'package*.json'
+    - 'tailwind.config.js'
+    - 'config-local.xml'
+    - 'config-test.xml'
+    - 'docker-compose.override.yml'
 
 jobs:
   deploy:
