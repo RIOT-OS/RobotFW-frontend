@@ -22718,6 +22718,10 @@ tr:hover > td > .c-commit-id-nav .c-commit-id-nav-buttons {
   }
 }
 
+.js-plotly-plot .plotly .modebar-btn svg {
+  display: inline;
+}
+
 /*
  * Collapsible
  */

@@ -19,6 +19,7 @@
 @import "components/progress-circle.css";
 @import "components/commit-id-nav.css";
 @import "components/page-overlay.css";
+@import "components/plotly.css";
 
 @import "partials/bootstrap-native.css";
 @import "partials/plotly.css";
