@@ -18,14 +18,16 @@
         <plots>
           <plot name="accuracy" />
           <plot name="jitter" />
-          <plot name="overhead" />
+          <plot name="set_timer" />
+          <plot name="remove_timer" />
         </plots>
       </testsuite>
       <testsuite name="tests_ztimer_benchmarks">
         <plots>
           <plot name="accuracy" />
           <plot name="jitter" />
-          <plot name="overhead" />
+          <plot name="set_timer" />
+          <plot name="remove_timer" />
         </plots>
       </testsuite>
     </testsuites>
