@@ -48,23 +48,23 @@
     Aggregate 'test' results for each sub-suite and generates a table row.
   -->
   <xsl:template name="statistics-suite" match="suite/suite" mode="statistics">
-    <xsl:variable name="current-board" select="../metadata/item[@name='RIOT-Board']" />
-    <xsl:variable name="current-testsuite" select="../metadata/item[@name='RIOT-Application']" />
+    <xsl:variable name="current-board" select="../meta[@name='RIOT-Board']" />
+    <xsl:variable name="current-testsuite" select="../meta[@name='RIOT-Application']" />
 
     <xsl:variable name="pass">
-      <xsl:value-of select="count(./test/status[@status = 'PASS' and @critical = 'yes'])"/>
+      <xsl:value-of select="count(./test/status[@status = 'PASS'])"/>
     </xsl:variable>
 
     <xsl:variable name="fail">
-      <xsl:value-of select="count(./test/status[@status = 'FAIL' and @critical = 'yes'])"/>
-    </xsl:variable>
-
-    <xsl:variable name="total">
-      <xsl:value-of select="count(./test/status/@status)"/>
+      <xsl:value-of select="count(./test/status[@status = 'FAIL'])"/>
     </xsl:variable>
 
     <xsl:variable name="skips">
-      <xsl:value-of select="$total - $pass - $fail"/>
+      <xsl:value-of select="count(./test/status[@status = 'SKIP'])"/>
+    </xsl:variable>
+
+    <xsl:variable name="total">
+      <xsl:value-of select="$pass + $fail + $skips"/>
     </xsl:variable>
 
     <tr class="c-table-responsive-row">
@@ -104,19 +104,19 @@
   <xsl:template name="statistics-summary" match="suite" mode="statistics">
 
     <xsl:variable name="pass">
-      <xsl:value-of select="/robot/statistics/total/stat[text() = 'Critical Tests']/@pass" />
+      <xsl:value-of select="/robot/statistics/total/stat[text() = 'All Tests']/@pass" />
     </xsl:variable>
 
     <xsl:variable name="fail">
-      <xsl:value-of select="sum(/robot/statistics/total/stat[text() = 'Critical Tests']/@fail)" />
-    </xsl:variable>
-
-    <xsl:variable name="total">
-      <xsl:value-of select="sum(/robot/statistics/total/stat[text() = 'All Tests']/@*)" />
+      <xsl:value-of select="sum(/robot/statistics/total/stat[text() = 'All Tests']/@fail)" />
     </xsl:variable>
 
     <xsl:variable name="skips">
-      <xsl:value-of select="$total - $pass - $fail" />
+      <xsl:value-of select="sum(/robot/statistics/total/stat[text() = 'All Tests']/@skip)" />
+    </xsl:variable>
+
+    <xsl:variable name="total">
+      <xsl:value-of select="$pass + $fail + $skips" />
     </xsl:variable>
 
     <tr class="c-table-responsive-row">

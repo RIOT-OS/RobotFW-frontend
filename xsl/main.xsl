@@ -54,8 +54,8 @@
       <xsl:copy-of select="riot-error:raise-error('Missing param: page', 'yes')" />
     </xsl:if>
 
-    <xsl:variable name="current-board" select="/robot/suite/metadata/item[@name='RIOT-Board']" />
-    <xsl:variable name="current-testsuite" select="/robot/suite/metadata/item[@name='RIOT-Application']" />
+    <xsl:variable name="current-board" select="/robot/suite/meta[@name='RIOT-Board']" />
+    <xsl:variable name="current-testsuite" select="/robot/suite/meta[@name='RIOT-Application']" />
 
     <html lang="{$lang}" class="bg-white antialiased">
       <head>

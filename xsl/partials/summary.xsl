@@ -28,13 +28,13 @@
       <div class="w-full sm:w-1/2 flex order-2 sm:order-1 p-3">
         <table class="c-table-vertical c-table-hover text-left w-full table-auto border-collapse">
           <tbody>
-            <xsl:apply-templates mode="summary" select="/robot/suite/metadata/item[@name='RIOT-Board']">
+            <xsl:apply-templates mode="summary" select="/robot/suite/meta[@name='RIOT-Board']">
               <xsl:with-param name="title" select="'Board'" />
             </xsl:apply-templates>
-            <xsl:apply-templates mode="summary" select="/robot/suite/metadata/item[@name='RIOT-Application']">
+            <xsl:apply-templates mode="summary" select="/robot/suite/meta[@name='RIOT-Application']">
               <xsl:with-param name="title" select="'Testsuite'" />
             </xsl:apply-templates>
-            <xsl:apply-templates mode="summary" select="/robot/statistics/total/stat[text() = 'Critical Tests']">
+            <xsl:apply-templates mode="summary" select="/robot/statistics/total/stat[text() = 'All Tests']">
               <xsl:with-param name="title" select="'Status'" />
             </xsl:apply-templates>
             <xsl:apply-templates mode="summary" select="$metadata-doc/metadata/RIOT/commit_id">
@@ -81,7 +81,7 @@
   <!--
     Generate generic table row from text().
   -->
-  <xsl:template name="summary-row" match="item|commit_timestamp" mode="summary">
+  <xsl:template name="summary-row" match="meta|commit_timestamp" mode="summary">
     <xsl:param name="title" />
 
     <tr>
@@ -112,11 +112,11 @@
   </xsl:template>
 
   <!--
-    Generate table row from /robot/statistics/total/stat[text() = 'Critical Tests'].
+    Generate table row from /robot/statistics/total/stat[text() = 'All Tests'].
 
     Dont't use 'suite/status' as it is set to 'FAIL' even if skipped tasks fail!
   -->
-  <xsl:template name="summary-row-status" match="/robot/statistics/total/stat[text() = 'Critical Tests']" mode="summary">
+  <xsl:template name="summary-row-status" match="/robot/statistics/total/stat[text() = 'All Tests']" mode="summary">
     <xsl:param name="title" />
 
     <xsl:variable name="status">

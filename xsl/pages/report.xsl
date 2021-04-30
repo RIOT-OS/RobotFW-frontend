@@ -11,8 +11,8 @@
 
     <xsl:for-each select="$context-node">
 
-      <xsl:variable name="current-board" select="/robot/suite/metadata/item[@name='RIOT-Board']" />
-      <xsl:variable name="current-testsuite" select="/robot/suite/metadata/item[@name='RIOT-Application']" />
+      <xsl:variable name="current-board" select="/robot/suite/meta[@name='RIOT-Board']" />
+      <xsl:variable name="current-testsuite" select="/robot/suite/meta[@name='RIOT-Application']" />
 
       <div id="content" class="flex max-w-screen-xl mx-auto">
 
