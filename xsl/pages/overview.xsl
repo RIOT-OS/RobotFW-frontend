@@ -83,10 +83,38 @@
             <xsl:for-each select="exsl:node-set($all-testsuites)/testsuites/*">
               <xsl:variable name="testsuite" select="$board/testsuite[@name = current()]"/>
               <xsl:choose>
+                <xsl:when test="$testsuite[@name = current() and @tests = 1 and (@skipped = 1 or @failures = 1)]/testcase[@name = 'Build']">
+                  <!-- No build happened -->
+                  <xsl:variable name="no-results-text">
+                    <xsl:choose>
+                      <xsl:when test="$testsuite[@name = current() and @skipped = 1]/testcase[@name = 'Build']">
+                        <xsl:value-of select="$testsuite[@name = current()]/testcase[@name = 'Build']/skipped/text()" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="$testsuite[@name = current()]/testcase[@name = 'Build']/failure/text()" />
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <xsl:variable name="no-results-status">
+                    <xsl:choose>
+                      <xsl:when test="$testsuite[@name = current() and @failures = 1]/testcase[@name = 'Build']">FAIL</xsl:when>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <td>
+                    <div class="c-cell">
+                      <xsl:call-template name="label">
+                        <xsl:with-param name="text" select="$no-results-text" />
+                        <xsl:with-param name="status" select="$no-results-status" />
+                        <xsl:with-param name="size" select="'sm'" />
+                      </xsl:call-template>
+                    </div>
+                  </td>
+                </xsl:when>
                 <xsl:when test="$testsuite/@name = current()">
                   <xsl:apply-templates mode="overview-grid" select="$testsuite"/>
                 </xsl:when>
                 <xsl:otherwise>
+                  <!-- There is no result -->
                   <td>
                     <div class="c-cell">
                       <xsl:call-template name="label">
