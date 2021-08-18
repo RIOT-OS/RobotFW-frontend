@@ -1,4 +1,4 @@
-server {                                                                                                                                                                                        
+server {
     listen       80;
     listen  [::]:80;
     server_name ${APP_DOMAIN};
@@ -15,7 +15,7 @@ server {
     gzip_buffers 32 16k;
     gzip_http_version 1.1;
     gzip_min_length 250;
-    gzip_types text/plain text/xml text/html text/javascript text/css application/json application/javascript application/x-javascript application/xml application/xml+rss image/jpeg image/bmp image/svg+xml image/x-icon;
+    gzip_types text/plain text/xml text/javascript text/css application/json application/javascript application/x-javascript application/xml application/xml+rss image/jpeg image/bmp image/svg+xml image/x-icon;
 
     location / {
         deny  all;
@@ -28,12 +28,18 @@ server {
 
     # Rewrite /results/[branch] to /results/[branch]/latest/overview
     location ~ ^/results/[^/]+(?:/)?$ {
-        rewrite ^/results/(.+?)(?:/)?$ /results/$1/latest/overview permanent; 
+        rewrite ^/results/(.+?)(?:/)?$ /results/$1/latest/overview permanent;
     }
 
     # Rewrite /results/[branch]/[build_nr] to /results/[branch]/[build_nr]/overview
-    location ~ ^/results/[^/]+/[^/]+(?:/)?$ {                                           
+    location ~ ^/results/[^/]+/[^/]+(?:/)?$ {
         rewrite ^/results/(.+?)/(.+?)(?:/)?$ /results/$1/$2/overview permanent;
+    }
+
+    # Allow access to json/xml files on /results/[branch]/[build_nr]/api/
+    location ~ ^/results/[^/]+/[^/]+/api/(.+)\.(json|xml) {
+        limit_except GET HEAD { deny all; }
+        rewrite  ^/results/(.+?)/(.+?)/api/(.+?)$ /content/$1/builds/$2/archive/build/robot/$3
     }
 
     location ~ ^/results/ {
