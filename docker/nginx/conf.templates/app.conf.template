@@ -36,18 +36,18 @@ server {
         rewrite ^/results/(.+?)/(.+?)(?:/)?$ /results/$1/$2/overview permanent;
     }
 
-    # Allow access to json/xml files on /results/[branch]/[build_nr]/api/
-    location ~ ^/results/[^/]+/[^/]+/api/(.+)\.(json|xml) {
-        limit_except GET HEAD { deny all; }
-        rewrite  ^/results/(.+?)/(.+?)/api/(.+?)$ /content/$1/builds/$2/archive/build/robot/$3
-    }
-
     location ~ ^/results/ {
         limit_except GET HEAD { deny all; }
         rewrite  ^/results/(.+?)/(.+?)/(.+?)(\.html)?$ /content/$1/builds/$2/archive/build/robot/$3.html break;
     }
 
     location ~ ^/static {
+    }
+
+    # Allow access to json/xml files
+    location ~ ^/api/v1/[^/]+/[^/]+/(.+)\.(json|xml) {
+        limit_except GET HEAD { deny all; }
+        rewrite  ^/api/v1/(.+?)/(.+?)/(.+?)$ /content/$1/builds/$2/archive/build/robot/$3 break;
     }
 
     # redirect server error pages
