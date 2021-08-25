@@ -22,7 +22,7 @@ if [ ! -d "$destination" ] || [ ! -w "$destination" ]; then
     exit 1
 fi
 
-jenkins_url_branch="https://ci.riot-os.org/hil/job/${job}/job/${branch}"
+jenkins_url_branch="https://hil.riot-os.org/jenkins/job/${job}/job/${branch}"
 jenkins_lsb_nr="$(curl -s -X GET ${jenkins_url_branch}/lastSuccessfulBuild/buildNumber)"
 jenkins_url_lsb_archive="${jenkins_url_branch}/${jenkins_lsb_nr}/artifact/*zip*/archive.zip"
 
